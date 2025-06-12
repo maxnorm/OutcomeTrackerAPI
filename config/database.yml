@@ -15,10 +15,8 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-
+  # See: https://island94.org/2024/09/secret-to-rails-database-connection-pool-size
+  pool: 100
 
 development:
   <<: *default
@@ -72,14 +70,10 @@ test:
 # the values provided in this file. Alternatively, you can specify a connection
 # URL environment variable explicitly:
 #
-#   production:
-#     url: <%= ENV["MY_APP_DATABASE_URL"] %>
+production:
+  <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-production:
-  <<: *default
-  database: outcome_tracker_api_production
-  username: outcome_tracker_api
-  password: <%= ENV["OUTCOME_TRACKER_API_DATABASE_PASSWORD"] %>
