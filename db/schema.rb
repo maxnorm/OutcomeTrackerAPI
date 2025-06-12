@@ -10,14 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_12_222207) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_12_223902) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
-  create_table "governments", force: :cascade do |t|
-    t.string "name", null: false
+  create_table "departments", force: :cascade do |t|
+    t.bigint "government_id", null: false
     t.string "slug", null: false
+    t.string "official_name", null: false
+    t.string "display_name", null: false
+    t.integer "priority", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["government_id"], name: "index_departments_on_government_id"
+    t.index ["slug"], name: "index_departments_on_slug"
+  end
+
+  create_table "governments", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "departments", "governments"
 end
