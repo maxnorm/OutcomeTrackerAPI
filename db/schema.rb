@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_12_223902) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_12_225202) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -27,11 +27,31 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_12_223902) do
   end
 
   create_table "governments", force: :cascade do |t|
-    t.string "name"
-    t.string "slug"
+    t.string "name", null: false
+    t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "ministers", force: :cascade do |t|
+    t.bigint "government_id", null: false
+    t.bigint "department_id", null: false
+    t.integer "order_of_precedence", null: false
+    t.string "person_short_honorific", null: false
+    t.datetime "started_at", precision: nil, null: false
+    t.datetime "ended_at", precision: nil
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "title", null: false
+    t.string "avatar_url"
+    t.string "role", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_ministers_on_department_id"
+    t.index ["government_id"], name: "index_ministers_on_government_id"
+  end
+
   add_foreign_key "departments", "governments"
+  add_foreign_key "ministers", "departments"
+  add_foreign_key "ministers", "governments"
 end

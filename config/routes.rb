@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :ministers, only: [ :index, :show ]
   resources :departments, only: [ :index, :show ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
