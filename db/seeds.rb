@@ -7,3 +7,9 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+
+Government.find_or_create_by!(name: "Government of Canada") do |g|
+  g.slug = "federal"
+end
+

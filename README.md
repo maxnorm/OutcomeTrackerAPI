@@ -1,7 +1,13 @@
-# README
+# Government Outcomes Tracker API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+
+Data Model
+
+`Government`:
+  Think of this as the core tenant. This is currently unused, but is useful for future development where we want to track
+  provincial governments in addition to the federal government. 
+  
+
 
 Things you may want to cover:
 
