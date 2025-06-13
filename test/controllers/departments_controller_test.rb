@@ -14,5 +14,4 @@ class DepartmentsControllerTest < ActionDispatch::IntegrationTest
     get department_url(@department), as: :json
     assert_response :success
   end
-
 end
