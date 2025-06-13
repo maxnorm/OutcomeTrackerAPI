@@ -4,7 +4,7 @@ class Avo::Resources::Evidence < Avo::BaseResource
   # self.search = {
   #   query: -> { query.ransack(id_eq: params[:q], m: "or").result(distinct: false) }
   # }
-  
+
   def fields
     field :id, as: :id
     field :raw_gazette_notice_id, as: :text
