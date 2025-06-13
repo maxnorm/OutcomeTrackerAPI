@@ -1,0 +1,113 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  promise_id: MyString
+  action_type_classified_at: 2025-06-13 09:46:02
+  action_type_confidence: 1
+  action_type_rationale: MyText
+  background_and_context: MyText
+  bc_priority_score: 1
+  bc_promise_direction: MyString
+  bc_promise_rank: MyString
+  bc_promise_rank_rationale: MyText
+  bc_ranked_at: 2025-06-13 09:46:02
+  candidate_or_government: MyString
+  category: MyString
+  concise_title: MyString
+  date_issued: 2025-06-13
+  description: MyText
+  evidence_count: 1
+  evidence_sync_fixed_at: 2025-06-13 09:46:02
+  explanation_enriched_at: 2025-06-13 09:46:02
+  explanation_enrichment_model: MyString
+  explanation_enrichment_status: MyString
+  history_generated_at: 2025-06-13 09:46:02
+  implied_action_type: MyString
+  ingested_at: 2025-06-13 09:46:02
+  keywords_context_used: MyString
+  keywords_enriched_at: 2025-06-13 09:46:02
+  keywords_enrichment_status: MyString
+  keywords_extracted_at: 2025-06-13 09:46:02
+  last_enrichment_at: 2025-06-13 09:46:02
+  last_evidence_date: 2025-06-13 09:46:02
+  last_progress_update_at: 2025-06-13 09:46:02
+  last_scored_at: 2025-06-13 09:46:02
+  last_updated_at: 2025-06-13 09:46:02
+  linking_preprocessing_done_at: 2025-06-13 09:46:02
+  linking_processed_at: 2025-06-13 09:46:02
+  linking_status: MyString
+  migration_status_ed_at: 2025-06-13 09:46:02
+  migration_version: MyString
+  parliament_session_id: MyString
+  party: MyString
+  party_code: MyString
+  progress_score: 1
+  progress_score_1_to_5: 1
+  progress_scoring_model: MyString
+  progress_status: MyString
+  progress_summary: MyText
+  rationale_format_fixed_at: 2025-06-13 09:46:02
+  region_code: MyString
+  responsible_department_lead: MyString
+  scoring_method: MyString
+  scoring_model: MyString
+  source_document_url: MyString
+  source_type: MyString
+  status: MyString
+  text: MyText
+
+two:
+  promise_id: MyString
+  action_type_classified_at: 2025-06-13 09:46:02
+  action_type_confidence: 1
+  action_type_rationale: MyText
+  background_and_context: MyText
+  bc_priority_score: 1
+  bc_promise_direction: MyString
+  bc_promise_rank: MyString
+  bc_promise_rank_rationale: MyText
+  bc_ranked_at: 2025-06-13 09:46:02
+  candidate_or_government: MyString
+  category: MyString
+  concise_title: MyString
+  date_issued: 2025-06-13
+  description: MyText
+  evidence_count: 1
+  evidence_sync_fixed_at: 2025-06-13 09:46:02
+  explanation_enriched_at: 2025-06-13 09:46:02
+  explanation_enrichment_model: MyString
+  explanation_enrichment_status: MyString
+  history_generated_at: 2025-06-13 09:46:02
+  implied_action_type: MyString
+  ingested_at: 2025-06-13 09:46:02
+  keywords_context_used: MyString
+  keywords_enriched_at: 2025-06-13 09:46:02
+  keywords_enrichment_status: MyString
+  keywords_extracted_at: 2025-06-13 09:46:02
+  last_enrichment_at: 2025-06-13 09:46:02
+  last_evidence_date: 2025-06-13 09:46:02
+  last_progress_update_at: 2025-06-13 09:46:02
+  last_scored_at: 2025-06-13 09:46:02
+  last_updated_at: 2025-06-13 09:46:02
+  linking_preprocessing_done_at: 2025-06-13 09:46:02
+  linking_processed_at: 2025-06-13 09:46:02
+  linking_status: MyString
+  migration_status_ed_at: 2025-06-13 09:46:02
+  migration_version: MyString
+  parliament_session_id: MyString
+  party: MyString
+  party_code: MyString
+  progress_score: 1
+  progress_score_1_to_5: 1
+  progress_scoring_model: MyString
+  progress_status: MyString
+  progress_summary: MyText
+  rationale_format_fixed_at: 2025-06-13 09:46:02
+  region_code: MyString
+  responsible_department_lead: MyString
+  scoring_method: MyString
+  scoring_model: MyString
+  source_document_url: MyString
+  source_type: MyString
+  status: MyString
+  text: MyText

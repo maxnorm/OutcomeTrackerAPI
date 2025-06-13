@@ -12,7 +12,7 @@ Data Model
 Things you may want to cover:
 
 * Ruby version
-
+  3.4.4
 * System dependencies
 
 * Configuration
@@ -28,3 +28,21 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+### 🛠 Setup
+
+```bash
+# Install dependencies
+bundle install
+
+# Setup PostgreSQL (Ubuntu example)
+sudo service postgresql start
+
+# Setup database
+rails db:create
+rails db:migrate
+rails db:seed
+
+# Run the server
+rails s
+```

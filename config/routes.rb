@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :ministers, only: [ :index, :show ]
   resources :departments, only: [ :index, :show ]
+  resources :promises, only: [ :index, :show ]
+  resources :evidences, only: [ :index, :show ]
 
   # GoodJob dashboard
   unless Rails.env.development?
