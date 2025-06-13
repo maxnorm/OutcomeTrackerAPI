@@ -1,0 +1,25 @@
+# GoodJob configuration
+Rails.application.configure do
+  # Configure GoodJob settings
+  config.good_job.execution_mode = :external
+  config.good_job.max_threads = 5
+  config.good_job.poll_interval = 30
+  config.good_job.shutdown_timeout = 25
+
+  # Enable cron jobs
+  config.good_job.enable_cron = true
+
+  # Preserve job records for debugging
+  config.good_job.preserve_job_records = true
+  config.good_job.cleanup_preserved_jobs_before_seconds_ago = 14.days
+
+  # Dashboard authentication (customize as needed)
+  config.good_job.dashboard_default_locale = :en
+
+  # Queue configuration
+  config.good_job.queues = "*"
+
+  # Smaller batch size for better performance
+  config.good_job.cleanup_interval_jobs = 1000
+  config.good_job.cleanup_interval_seconds = 600
+end
