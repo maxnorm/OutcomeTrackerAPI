@@ -1,0 +1,2 @@
+class PromisesController < ApplicationController
+end
