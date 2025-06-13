@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :ministers, only: [ :index, :show ]
   resources :departments, only: [ :index, :show ]
-  resources :evidence, only: [:index, :show, :create, :update, :destroy]
-  resources :promises, only: [:index, :show, :create, :update, :destroy]
+  resources :promises, only: [:index, :show]
+  resources :evidences, only: [:index, :show]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
