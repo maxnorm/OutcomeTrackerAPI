@@ -41,3 +41,7 @@ end
 gem "avo", ">= 3.2"
 
 gem "devise", "~> 4.9"
+
+gem "importmap-rails", "~> 2.1"
+
+gem "propshaft", "~> 1.1"
