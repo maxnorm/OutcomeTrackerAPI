@@ -502,3 +502,112 @@ ministers_data.each do |attrs|
     minister.avatar_url = attrs[:avatar_url]
   end
 end
+
+puts "Seeding Promises..."
+
+promise_data = {
+  promise_id: "LPC_20250419_OTHER_71c8234b",
+  action_type_classified_at: "2024-04-20T22:23:06Z",
+  action_type_confidence: 3,
+  action_type_rationale: "The promise outlines a series of strategic actions...",
+  background_and_context: "In the context of evolving digital infrastructure...",
+  bc_priority_score: 7,
+  bc_promise_direction: "forward",
+  bc_promise_rank: "high",
+  bc_promise_rank_rationale: "Addresses urgent gaps in policy...",
+  bc_ranked_at: "2024-04-21T10:12:00Z",
+  candidate_or_government: "LPC",
+  category: "Infrastructure",
+  concise_title: "Expand digital access",
+  date_issued: "2024-04-19",
+  description: "We promise to expand digital access across rural Canada...",
+  evidence_count: 5,
+  explanation_enrichment_model: "gpt-4",
+  explanation_enrichment_status: "complete",
+  explanation_enriched_at: "2024-04-21T12:00:00Z",
+  history_generated_at: "2024-04-21T14:30:00Z",
+  implied_action_type: "legislation",
+  ingested_at: "2024-04-19T09:00:00Z",
+  keywords_context_used: "rural access, connectivity",
+  keywords_enrichment_status: "complete",
+  keywords_enriched_at: "2024-04-21T11:45:00Z",
+  keywords_extracted_at: "2024-04-21T11:30:00Z",
+  last_enrichment_at: "2024-04-21T14:30:00Z",
+  last_evidence_date: "2024-04-20",
+  last_progress_update_at: "2024-04-22T10:00:00Z",
+  last_scored_at: "2024-04-22T10:05:00Z",
+  last_updated_at: "2024-04-22T10:10:00Z",
+  linking_preprocessing_done_at: "2024-04-21T15:00:00Z",
+  linking_processed_at: "2024-04-21T15:30:00Z",
+  linking_status: "linked",
+  migration_status_ed_at: "2024-04-21T16:00:00Z",
+  migration_version: "v2",
+  parliament_session_id: "44-1",
+  party: "Liberal",
+  party_code: "LPC",
+  progress_score: 4,
+  progress_score_1_to_5: 4,
+  progress_scoring_model: "v1.3",
+  progress_status: "in progress",
+  progress_summary: "Significant infrastructure projects have been launched.",
+  rationale_format_fixed_at: "2024-04-21T16:30:00Z",
+  region_code: "CA-ON",
+  responsible_department_lead: "Innovation, Science and Economic Development Canada",
+  scoring_method: "automated",
+  scoring_model: "gpt-4-vision",
+  source_document_url: "https://example.com/promise-doc",
+  source_type: "platform",
+  status: "active",
+  text: "We promise to expand digital access...",
+  extracted_keywords_concepts: ["digital access", "rural", "infrastructure"],
+  intended_impact_and_objectives: ["Bridge the digital divide", "Support rural communities"],
+  what_it_means_for_canadians: ["Improved internet access", "Greater economic opportunity"],
+  linked_evidence_ids: ["EVID1234", "EVID5678"],
+  relevant_departments: ["ISED", "Heritage Canada"],
+  commitment_history_rationale: { "2024-04" => "Budget allocated" },
+  commitment_history_timeline: { "2024-04" => "Bill introduced" },
+  key_points: { "summary" => "High priority infrastructure expansion" },
+  policy_areas: { "digital" => true, "rural" => true },
+  target_groups: { "rural_residents" => true }
+}
+
+Promise.find_or_initialize_by(promise_id: promise_data[:promise_id]).tap do |p|
+  p.assign_attributes(promise_data)
+  p.save!
+end
+
+puts "Seeding Evidences..."
+
+evidence_data = {
+  raw_gazette_notice_id: "GN-2024-001",
+  rias_summary: "This notice outlines planned policy updates...",
+  description_or_details: "Full text of the Gazette outlining broadband expansion...",
+  evidence_date: "2024-04-20T09:00:00Z",
+  evidence_id: "EVID1234",
+  evidence_source_type: "gazette",
+  hybrid_linking_avg_confidence: 0.87,
+  hybrid_linking_method: "AI + manual",
+  hybrid_linking_timestamp: "2024-04-21T10:00:00Z",
+  ingested_at: "2024-04-20T12:00:00Z",
+  parliament_session_id: "44-1",
+  promise_linking_processed_at: "2024-04-21T12:30:00Z",
+  promise_linking_status: "linked",
+  promise_links_found2: 1,
+  source_document_raw_id: "DOC-2024-XYZ",
+  source_url: "https://example.com/evidence-doc",
+  title_or_summary: "Government expands rural broadband",
+  key_concepts: ["broadband", "rural", "infrastructure"],
+  linked_departments: ["ISED"],
+  promise_ids: ["LPC_20250419_OTHER_71c8234b"],
+  llm_analysis_raw: {
+    "summary" => "The document supports the stated promise to expand rural digital access.",
+    "confidence" => 0.92
+  }
+}
+
+Evidence.find_or_initialize_by(evidence_id: evidence_data[:evidence_id]).tap do |e|
+  e.assign_attributes(evidence_data)
+  e.save!
+end
+
+puts "Done seeding"
