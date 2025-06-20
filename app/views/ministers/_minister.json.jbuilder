@@ -1,0 +1,10 @@
+json.(minister,
+  :order_of_precedence,
+  :started_at,
+  :ended_at,
+  :first_name,
+  :last_name,
+  :last_name,
+  :title,
+  :avatar_url,
+  :person_short_honorific)
