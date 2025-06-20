@@ -21,7 +21,7 @@ module Admin
                     .offset(params[:offset] || 0)
 
       render json: {
-        data: evidences.as_json(only: [:id, :title, :description, :source_url, :parliament_session_id]),
+        data: evidences.as_json(only: [ :id, :title, :description, :source_url, :parliament_session_id ]),
         meta: {
           total: evidences.count
         }
@@ -30,7 +30,7 @@ module Admin
 
     def show
       evidence = Evidence.find(params[:id])
-      render json: evidence.as_json(include: { promises: { only: [:id, :title] } })
+      render json: evidence.as_json(include: { promises: { only: [ :id, :title ] } })
     end
 
     def update

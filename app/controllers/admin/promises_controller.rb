@@ -7,12 +7,12 @@ module Admin
       base_query = base_query.where(party_code: params[:party_code]) if params[:party_code].present?
       base_query = base_query.where(region_code: params[:region_code]) if params[:region_code].present?
       base_query = base_query.where(parliament_session_id: params[:parliament_session_id]) if params[:parliament_session_id].present?
-      base_query = base_query.where(source_type: params[:source_type]) if params[:source_type].present? && params[:source_type] != 'all'
+      base_query = base_query.where(source_type: params[:source_type]) if params[:source_type].present? && params[:source_type] != "all"
 
       if params[:bc_promise_rank].present?
-        if params[:bc_promise_rank] == 'none'
+        if params[:bc_promise_rank] == "none"
           base_query = base_query.where(bc_promise_rank: nil)
-        elsif params[:bc_promise_rank] != 'all'
+        elsif params[:bc_promise_rank] != "all"
           base_query = base_query.where(bc_promise_rank: params[:bc_promise_rank])
         end
       end
@@ -52,7 +52,7 @@ module Admin
       puts "🗑️ Soft deleting promise #{promise.id}"
 
       if promise.update(
-        status: 'deleted',
+        status: "deleted",
       )
         puts "✅ Soft delete successful"
         render json: { success: true, message: "Promise soft deleted", id: promise.id }
@@ -65,8 +65,7 @@ module Admin
     private
 
     def promise_params
-      params.permit(*Promise.client_fields - [:id])
+      params.permit(*Promise.client_fields - [ :id ])
     end
-
   end
 end

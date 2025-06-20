@@ -56,5 +56,4 @@ class Promise < ApplicationRecord
       :linking_preprocessing_done_at
     ]
   end
-
 end
