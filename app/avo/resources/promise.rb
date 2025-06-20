@@ -51,7 +51,7 @@ class Avo::Resources::Promise < Avo::BaseResource
     # field :keywords_enrichment_status, as: :text
     # field :keywords_extracted_at, as: :date_time
     # field :last_enrichment_at, as: :date_time
-    # field :last_evidence_date, as: :date_time
+    field :last_evidence_date, as: :date_time
     # field :last_progress_update_at, as: :date_time
     # field :last_scored_at, as: :date_time
     # field :last_updated_at, as: :date_time
