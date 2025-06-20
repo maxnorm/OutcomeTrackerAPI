@@ -14,5 +14,8 @@ class Avo::Resources::Department < Avo::BaseResource
     field :priority, as: :number
     field :government, as: :belongs_to
     field :ministers, as: :has_many
+    field :lead_promises, as: :has_many
+
+    field :promises, as: :has_many
   end
 end

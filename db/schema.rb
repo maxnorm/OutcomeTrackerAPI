@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_19_212356) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_20_152703) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -64,6 +64,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_19_212356) do
     t.datetime "updated_at", null: false
     t.jsonb "json_attributes"
     t.string "type"
+  end
+
+  create_table "department_promises", force: :cascade do |t|
+    t.bigint "department_id", null: false
+    t.bigint "promise_id", null: false
+    t.boolean "is_lead", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_department_promises_on_department_id"
+    t.index ["promise_id"], name: "index_department_promises_on_promise_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -368,6 +378,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_19_212356) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "entries"
   add_foreign_key "activities", "governments"
+  add_foreign_key "department_promises", "departments"
+  add_foreign_key "department_promises", "promises"
   add_foreign_key "departments", "governments"
   add_foreign_key "entries", "entries", column: "parent_id"
   add_foreign_key "entries", "feeds"
