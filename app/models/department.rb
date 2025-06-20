@@ -1,8 +1,8 @@
 class Department < ApplicationRecord
   belongs_to :government
   has_many :officials, class_name: "Minister", dependent: :destroy
-  has_one :minister, -> { where(role: "Minister") }, class_name: "Minister"
-
+  # role is Minister or Prime Minister
+  has_one :minister, -> { where("role in (?)", [ "Minister", "Prime Minister" ]) }, class_name: "Minister"
 
   has_many :department_promises, dependent: :destroy
   has_many :promises, through: :department_promises
