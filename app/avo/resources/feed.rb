@@ -11,7 +11,7 @@ class Avo::Resources::Feed < Avo::BaseResource
     field :description, as: :textarea
     field :language, as: :text
     field :url, as: :text
-    field :last_scraped, as: :date_time
+    field :last_scraped, as: :date_time, sortable: true
     field :raw, as: :code
     field :government, as: :belongs_to
 

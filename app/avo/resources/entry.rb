@@ -7,14 +7,15 @@ class Avo::Resources::Entry < Avo::BaseResource
 
   def fields
     field :id, as: :id
+    field :is_index, as: :boolean
     field :feed, as: :belongs_to
+    field :scraped_at, as: :date_time, sortable: true
+    field :published_at, as: :date_time, sortable: true
+    field :published_at, as: :date_time, sortable: true
     field :title, as: :text
     field :url, as: :text
-    field :published_at, as: :date_time
     field :skip_reason, as: :text
     field :skipped_at, as: :date_time
-    field :scraped_at, as: :date_time
-    field :is_index, as: :boolean
     field :summary, as: :textarea
     field :activities, as: :has_many
 
