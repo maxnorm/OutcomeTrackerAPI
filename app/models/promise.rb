@@ -8,6 +8,11 @@ class Promise < ApplicationRecord
   has_one :lead_department_promise, -> { where(is_lead: true) }, class_name: "DepartmentPromise"
   has_one :lead_department, through: :lead_department_promise, source: :department
 
+  def set_last_evidence_date!
+    self.last_evidence_date = evidences.where.not(impact: "neutral").map(&:activity).maximum(:published_at)
+    self.save!(touch: false)
+  end
+
   def link_department!(department, is_lead: false)
     Rails.logger.info("Linking department #{department.slug} to promise #{promise_id}")
     if is_lead
