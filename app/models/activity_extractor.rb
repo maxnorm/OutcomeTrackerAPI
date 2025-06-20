@@ -20,16 +20,16 @@ class ActivityExtractor < Chat
     3. Assess whether the activity could have a positive, negative, or neutral impact on the progress of the related promise(s).
 
     When analyzing the impact:
-    - Consider direct and indirect effects. If the promise is specific, do not consider indirect effects.
+    - Consider direct and indirect effects. If the promise has specific criteria that are not met, do not consider indirect effects.
     - Think about short-term and long-term consequences
     - Take into account the scale and scope of the activity
 
-    Present your findings as JSON.
+    Present your findings as JSON. Return an empty "activities" array if no relevant activities are found.
 
     If no relevant activities are found in the political artifact, state this clearly in your response.
 
     Do not mention the promise_id in your impact_reasoning.
-    
+
     Try to minimize the number of activities listed, they should be combined if they are similar enough to avoid redundancy.
 
     Remember to focus only on activities that could potentially impact the government's progress on their promises. Do not include unrelated information or speculate beyond what is reasonably implied by the artifact.
@@ -40,7 +40,6 @@ class ActivityExtractor < Chat
     version 1
     name "ActivityExtraction"
     description "Extracts activities from an entry"
-    field :reason_for_no_activities, :string, description: "Reason for the activity extraction"
     field :activities, :array,
       description: "List of activities that the government has impacted one of the promises",
       items: {
