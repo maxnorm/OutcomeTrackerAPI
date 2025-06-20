@@ -9,12 +9,16 @@ class DepartmentsController < ApplicationController
 
   # GET /departments/1
   def show
-    render json: @department
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_department
-      @department = Department.find(params.expect(:id))
+      id = params.expect(:id)
+      if id.match(/[0-9]/)
+        @department = Department.find(id)
+      else
+        @department = Department.find_by(slug: id)
+      end
     end
 end

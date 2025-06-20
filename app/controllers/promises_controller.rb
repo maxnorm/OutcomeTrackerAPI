@@ -6,6 +6,5 @@ class PromisesController < ApplicationController
 
   def show
     @promise = Promise.find(params[:id])
-    render json: @promise
   end
 end
