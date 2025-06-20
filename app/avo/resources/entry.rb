@@ -8,16 +8,25 @@ class Avo::Resources::Entry < Avo::BaseResource
   def fields
     field :id, as: :id
     field :is_index, as: :boolean
+
+    field "proms", as: :number, only_on: :index do
+      record.evidences.count
+    end
+
+    field "to_review", as: :number, only_on: :index do
+      record.evidences.where(review: [ nil, false ]).count
+    end
+
     field :feed, as: :belongs_to
     field :scraped_at, as: :date_time, sortable: true
     field :published_at, as: :date_time, sortable: true
     field :published_at, as: :date_time, sortable: true
     field :title, as: :text
-    field :promises, as: :has_many
+    field :summary, as: :textarea
+    field :evidences, as: :has_many
     field :url, as: :text
     field :skip_reason, as: :text
     field :skipped_at, as: :date_time
-    field :summary, as: :textarea
     field :activities, as: :has_many
 
     field :parsed_markdown, as: :markdown

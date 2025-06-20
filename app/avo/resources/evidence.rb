@@ -11,10 +11,10 @@ class Avo::Resources::Evidence < Avo::BaseResource
 
     field :impact_magnitude, as: :number, sortable: true
     field :impact, as: :text
+    field :promise, as: :belongs_to
     field :impact_reason, as: :text
 
     field :activity, as: :belongs_to
-    field :promise, as: :belongs_to
     field :linked_at, as: :date_time, sortable: true
     field :linked_by, as: :belongs_to
     field :link_type, as: :text
