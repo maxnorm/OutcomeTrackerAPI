@@ -1,5 +1,5 @@
 module Admin
-  class EvidencesController < ApplicationController
+  class EvidenceController < ApplicationController
     def index
       evidences = Evidence.all
 
