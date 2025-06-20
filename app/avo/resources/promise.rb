@@ -30,6 +30,8 @@ class Avo::Resources::Promise < Avo::BaseResource
     field :bc_priority_score, as: :number, sortable: true
     field :bc_promise_direction, as: :text
     field :bc_promise_rank, as: :text
+
+    field :lead_department, as: :has_one
     # field :bc_promise_rank_rationale, as: :textarea
     # field :bc_ranked_at, as: :date_time
     field :candidate_or_government, as: :text
@@ -85,6 +87,8 @@ class Avo::Resources::Promise < Avo::BaseResource
     # field :key_points, as: :code
     # field :policy_areas, as: :code
     # field :target_groups, as: :code
+
+    field :department_promises, as: :has_many
 
     field :evidences, as: :has_many
   end
