@@ -13,6 +13,7 @@ class Avo::Resources::Entry < Avo::BaseResource
     field :published_at, as: :date_time, sortable: true
     field :published_at, as: :date_time, sortable: true
     field :title, as: :text
+    field :promises, as: :has_many
     field :url, as: :text
     field :skip_reason, as: :text
     field :skipped_at, as: :date_time
