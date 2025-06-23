@@ -18,9 +18,4 @@ class FeedsController < ApplicationController
     def set_feed
       @feed = Feed.find(params.expect(:id))
     end
-
-    # Only allow a list of trusted parameters through.
-    def feed_params
-      params.expect(feed: [ :title, :description, :language, :url, :last_scraped, :raw, :government_id ])
-    end
 end
