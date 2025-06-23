@@ -8,10 +8,10 @@ class Avo::Resources::Feed < Avo::BaseResource
   def fields
     field :id, as: :id
     field :title, as: :text
+    field :last_scraped_at, as: :date_time, sortable: true
     field :description, as: :textarea
     field :language, as: :text
     field :url, as: :text
-    field :last_scraped, as: :date_time, sortable: true
     field :raw, as: :code
     field :government, as: :belongs_to
 

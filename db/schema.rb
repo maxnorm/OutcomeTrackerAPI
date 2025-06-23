@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_20_152703) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_23_150313) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -139,11 +139,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_20_152703) do
     t.text "description"
     t.string "language"
     t.string "url"
-    t.datetime "last_scraped", precision: nil
     t.jsonb "raw"
     t.bigint "government_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "last_scraped_at", precision: nil
+    t.string "error_message"
+    t.datetime "last_scrape_failed_at", precision: nil
     t.index ["government_id"], name: "index_feeds_on_government_id"
   end
 
