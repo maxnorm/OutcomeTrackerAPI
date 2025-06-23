@@ -20,9 +20,14 @@ class Entry < ApplicationRecord
   def fetch_data!(inline: false)
     # TODO: make this more robust, this should not be configured globally.
     # Track parliament session dates for matching?
-    if self.published_at < Time.parse("2025-04-28")
+    if self.url.start_with?("mailto:")
       self.skipped_at = Time.now
-      self.skip_reason = "Too old, published before 2025-05-26 (Carney's election)"
+      self.skip_reason = "Mailto url not a proper entry"
+      self.save!
+      return
+    elsif self.published_at < Time.parse("2025-04-28")
+      self.skipped_at = Time.now
+      self.skip_reason = "Too old, published before 2025-04-28 (Carney's election)"
       self.save!
       return
     else
