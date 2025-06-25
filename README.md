@@ -43,6 +43,7 @@
 
 
 ### 🛠 Setup
+Ensure you have Ruby and PostgresQL installed
 
 ```bash
 # Install dependencies
