@@ -543,6 +543,10 @@ puts "Seeding Promises..."
 
 require_relative 'canada_promises_2024'
 
+puts "Matching Promises to Departments..."
+
+require_relative 'department_promises'
+
 puts "Seeding Evidences..."
 
 puts "Done seeding"
