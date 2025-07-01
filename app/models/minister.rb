@@ -3,7 +3,7 @@ class Minister < ApplicationRecord
   belongs_to :department
 
   def compound_name
-    "{title} (#{full_name})"
+    "#{title} (#{full_name})"
   end
 
   def full_name
