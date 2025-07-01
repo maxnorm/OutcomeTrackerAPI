@@ -1,0 +1,6 @@
+# Feeds fixtures for testing
+
+canada_gazette:
+  title: "Canada Gazette Test Feed"
+  url: "https://example.com/test-feed.xml"
+  government: canada 
