@@ -48,6 +48,7 @@ Ensure you have Ruby and PostgresQL installed
 ```bash
 # Install dependencies
 bundle install
+pnpm install
 
 # Setup PostgreSQL (Ubuntu example)
 sudo service postgresql start
