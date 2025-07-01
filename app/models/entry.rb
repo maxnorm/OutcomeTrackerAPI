@@ -32,7 +32,7 @@ class Entry < ApplicationRecord
       return
     else
       self.skipped_at = nil
-      self.skipped_reason = nil
+      self.skip_reason = nil
     end
 
     unless inline

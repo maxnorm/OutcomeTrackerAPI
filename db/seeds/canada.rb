@@ -529,6 +529,10 @@ feed_data = [
   {
     title: "Canada News Statements",
     url: "https://api.io.canada.ca/io-server/gc/news/en/v2?type=statements&sort=publishedDate&orderBy=desc&pick=100&format=atom&atomtitle=statements"
+  },
+  {
+    title: "Department of Finance News Statements",
+    url: "https://api.io.canada.ca/io-server/gc/news/en/v2?dept=departmentfinance&type=newsreleases&sort=publishedDate&orderBy=desc&pick=100&format=atom&atomtitle=Canada%20News%20Centre%20-%20Department%20of%20Finance%20Canada%20-%20News%20Releases"
   }
 ]
 

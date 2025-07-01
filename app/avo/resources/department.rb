@@ -4,7 +4,7 @@ class Avo::Resources::Department < Avo::BaseResource
   self.search = {
     query: -> { query.ransack(official_name_cont: params[:q], display_name_cont: params[:q], m: "or").result(distinct: false) }
   }
-  
+
   self.title = :official_name
 
   def fields
