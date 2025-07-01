@@ -10,6 +10,6 @@ class Department < ApplicationRecord
            through: :department_promises, source: :promise
 
   def self.ransackable_attributes(auth_object = nil)
-    ["display_name", "official_name"]
+    [ "display_name", "official_name" ]
   end
 end
