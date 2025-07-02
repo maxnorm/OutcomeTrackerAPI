@@ -2,7 +2,7 @@ require "test_helper"
 
 class MinistersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @minister = Minister.first
+    @minister = ministers(:finance_minister)
   end
 
   test "should get index" do

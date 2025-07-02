@@ -1,0 +1,9 @@
+# Department fixtures for testing
+
+finance:
+  government: canada
+  slug: "finance"
+  official_name: "Department of Finance Canada"
+  display_name: "Finance Canada"
+  priority: 1
+

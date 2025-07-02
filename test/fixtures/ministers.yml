@@ -1,0 +1,14 @@
+# Minister fixtures for testing
+
+finance_minister:
+  government: canada
+  department: finance
+  order_of_precedence: 4
+  person_short_honorific: "Hon."
+  started_at: <%= 2.years.ago %>
+  ended_at: null
+  first_name: "Chrystia"
+  last_name: "Freeland"
+  title: "Deputy Prime Minister and Minister of Finance"
+  avatar_url: "https://example.com/avatar1.jpg"
+  role: "Minister"
