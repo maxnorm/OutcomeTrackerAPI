@@ -563,7 +563,7 @@ builders_data = [
     description:
       "From Vancouver comedy clubs to Hollywood A-lister, Ryan built a media empire spanning film, spirits, and sports. His authentic voice and business acumen turned him into one of the most influential Canadian exports.",
     achievement: "Built multiple 9-figure businesses while maintaining authentic Canadian humor",
-    avatar: "/placeholder.svg?height=120&width=120",
+    avatar: "/placeholder.svg?height=120&width=120"
   },
   {
     id: 2,
@@ -574,7 +574,7 @@ builders_data = [
     description:
       "A German immigrant who couldn't find good e-commerce software, so he built Shopify. Today, his platform powers over 4 million businesses worldwide and has created countless entrepreneurial success stories.",
     achievement: "Democratized e-commerce for millions of entrepreneurs globally",
-    avatar: "/placeholder.svg?height=120&width=120",
+    avatar: "/placeholder.svg?height=120&width=120"
   },
   {
     id: 3,
@@ -585,7 +585,7 @@ builders_data = [
     description:
       "Her dystopian masterpiece 'The Handmaid's Tale' predicted societal challenges decades before they emerged. Margaret's work continues to shape global conversations about freedom, power, and human rights.",
     achievement: "Authored works that became cultural phenomena and social movements",
-    avatar: "/placeholder.svg?height=120&width=120",
+    avatar: "/placeholder.svg?height=120&width=120"
   },
   {
     id: 4,
@@ -596,7 +596,7 @@ builders_data = [
     description:
       "From small-town Ontario to commanding the International Space Station, Chris showed the world that Canadians can reach for the stars. His space videos inspired millions to pursue STEM careers.",
     achievement: "First Canadian to command the International Space Station",
-    avatar: "/placeholder.svg?height=120&width=120",
+    avatar: "/placeholder.svg?height=120&width=120"
   },
   {
     id: 5,
@@ -607,7 +607,7 @@ builders_data = [
     description:
       "From singing in her family's piano bar to selling 250+ million records worldwide, Céline proved that talent, determination, and authenticity can conquer any stage. Her voice became Canada's gift to the world.",
     achievement: "One of the best-selling music artists of all time with 250M+ records sold",
-    avatar: "/placeholder.svg?height=120&width=120",
+    avatar: "/placeholder.svg?height=120&width=120"
   },
   {
     id: 6,
@@ -618,8 +618,8 @@ builders_data = [
     description:
       "For over 50 years, David has been Canada's environmental conscience. His work educated generations about climate change and inspired a global movement toward sustainable living.",
     achievement: "Educated millions about environmental science through 'The Nature of Things'",
-    avatar: "/placeholder.svg?height=120&width=120",
-  },
+    avatar: "/placeholder.svg?height=120&width=120"
+  }
 ]
 
 builders_data.each do |attrs|
