@@ -14,7 +14,7 @@ class CreateCanadianBuilders < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-    
+
     add_index :canadian_builders, :slug, unique: true
     add_index :canadian_builders, :category
   end
