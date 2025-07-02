@@ -1,0 +1,5 @@
+# Government fixtures for testing
+
+canada:
+  name: "Government of Canada"
+  slug: "canada"
