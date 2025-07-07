@@ -1,0 +1,19 @@
+evidence_one:
+  activity: activity_one
+  promise: one
+  impact_magnitude: 5
+  impact: "High"
+  impact_reason: "This is a major policy change."
+  link_type: "Direct"
+  link_reason: "The announcement directly mentions the promise."
+  linked_at: <%= 1.day.ago %>
+
+evidence_two:
+  activity: activity_two
+  promise: two
+  impact_magnitude: 3
+  impact: "Medium"
+  impact_reason: "This program is a step towards fulfilling the promise."
+  link_type: "Indirect"
+  link_reason: "The program aligns with the goals of the promise."
+  linked_at: <%= 2.days.ago %> 

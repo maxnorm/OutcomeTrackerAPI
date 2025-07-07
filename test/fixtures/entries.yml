@@ -1,0 +1,21 @@
+entry_one:
+  feed: canada_gazette
+  government: canada
+  title: "First Entry"
+  summary: "This is the summary for the first entry."
+  url: "http://example.com/entry/1"
+  published_at: <%= 2.days.ago %>
+  scraped_at: <%= 1.day.ago %>
+  raw_html: "<html><body><h1>First Entry</h1></body></html>"
+  parsed_markdown: "# First Entry"
+
+entry_two:
+  feed: canada_gazette
+  government: canada
+  title: "Second Entry"
+  summary: "This is the summary for the second entry."
+  url: "http://example.com/entry/2"
+  published_at: <%= 3.days.ago %>
+  scraped_at: <%= 2.days.ago %>
+  raw_html: "<html><body><h1>Second Entry</h1></body></html>"
+  parsed_markdown: "# Second Entry" 
