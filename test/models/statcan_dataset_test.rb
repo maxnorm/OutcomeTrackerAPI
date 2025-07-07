@@ -1,4 +1,3 @@
-# test/models/statcan_dataset_test.rb
 require "test_helper"
 
 class StatcanDatasetTest < ActiveSupport::TestCase
