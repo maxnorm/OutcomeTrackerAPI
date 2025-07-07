@@ -12,6 +12,10 @@ class Promise < ApplicationRecord
     [ "concise_title" ]
   end
 
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
+
   def set_last_evidence_date!
     self.last_evidence_date = evidences.where.not(impact: "neutral").map(&:activity).maximum(:published_at)
     self.save!(touch: false)
