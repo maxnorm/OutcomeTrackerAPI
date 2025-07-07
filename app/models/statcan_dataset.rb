@@ -4,6 +4,19 @@ class StatcanDataset < ApplicationRecord
   validates :sync_schedule, presence: true
   validate :valid_cron_expression
 
+  def self.filter_stale(datasets, current_time = Time.current)
+    datasets.select { |dataset| dataset.needs_sync?(current_time) }
+  end
+
+  def needs_sync?(current_time = Time.current)
+    return true if last_synced_at.nil?
+
+    cron = Fugit::Cron.parse(sync_schedule)
+    last_scheduled_time = cron.previous_time(current_time)
+
+    last_synced_at.to_i < last_scheduled_time.seconds
+  end
+
   private
 
   def valid_cron_expression
