@@ -432,6 +432,7 @@ DEPENDENCIES
   devise (~> 4.9)
   dotenv
   feedjira (~> 3.2)
+  fugit (~> 1.11)
   good_job (~> 4.10, >= 4.10.2)
   http (~> 5.3)
   iconv (~> 1.1)

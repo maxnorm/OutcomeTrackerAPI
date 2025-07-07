@@ -11,6 +11,9 @@ gem "good_job", "~> 4.10", ">= 4.10.2"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Use Fugit for parsing/validating cron expressions
+gem "fugit", "~> 1.11"
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
