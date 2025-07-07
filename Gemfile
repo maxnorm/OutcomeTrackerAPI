@@ -11,8 +11,6 @@ gem "good_job", "~> 4.10", ">= 4.10.2"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-# Use Fugit for parsing/validating cron expressions
-gem "fugit", "~> 1.11"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
@@ -32,8 +30,6 @@ gem "rack-cors"
 # Search
 gem "ransack", "~> 4.2.1"
 
-
-
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -45,6 +41,8 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 end
 gem "avo", ">= 3.2"
+
+gem "csv", "~> 3.3"
 
 gem "devise", "~> 4.9"
 
@@ -58,6 +56,8 @@ gem "ruby_llm", "~> 1.3", github: "xrendan/ruby_llm", branch: "structured-output
 gem "dotenv", groups: [ :development, :test ]
 
 gem "feedjira", "~> 3.2"
+
+gem "fugit", "~> 1.11"
 
 gem "http", "~> 5.3"
 
