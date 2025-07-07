@@ -1,0 +1,13 @@
+activity_one:
+  entry: entry_one
+  government: canada
+  title: "Announced a new policy"
+  summary: "To improve public services"
+  published_at: <%= 1.day.ago %>
+
+activity_two:
+  entry: entry_two
+  government: canada
+  title: "Launched a new program"
+  summary: "To support small businesses"
+  published_at: <%= 2.days.ago %>

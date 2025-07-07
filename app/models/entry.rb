@@ -16,6 +16,10 @@ class Entry < ApplicationRecord
 
   validates :url, presence: true, uniqueness: true
 
+  def self.ransackable_attributes(auth_object = nil)
+    [ "title", "summary", "url" ]
+  end
+
 
   def fetch_data!(inline: false)
     # TODO: make this more robust, this should not be configured globally.

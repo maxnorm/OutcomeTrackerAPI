@@ -1,9 +1,11 @@
 class Avo::Resources::Evidence < Avo::BaseResource
-  # self.includes = []
+  self.includes = [ :promise, :activity ]
+  self.title = :search_result_title
+  self.description = :search_result_description
   # self.attachments = []
-  # self.search = {
-  #   query: -> { query.ransack(id_eq: params[:q], m: "or").result(distinct: false) }
-  # }
+  self.search = {
+    query: -> { query.ransack(promise_concise_title_cont: params[:q], promise_description_cont: params[:q], promise_promise_id_cont: params[:q], activity_title_cont: params[:q], m: "or").result(distinct: false) }
+  }
 
   def fields
     field :id, as: :id
@@ -21,5 +23,9 @@ class Avo::Resources::Evidence < Avo::BaseResource
     field :link_reason, as: :text
     field :reviewed_by, as: :belongs_to
     field :reviewed_at, as: :date_time
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    [ "promise", "activity" ]
   end
 end
