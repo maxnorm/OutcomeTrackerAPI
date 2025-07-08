@@ -1,6 +1,11 @@
 require "test_helper"
 
 class StatcanCronJobTest < ActiveJob::TestCase
+  def setup
+    # Remove fixture data before each test
+    StatcanDataset.delete_all
+  end
+
   test "should enqueue sync jobs for stale datasets only" do
     current_time = Time.parse("2025-01-02 14:00:00")  # 2pm
 

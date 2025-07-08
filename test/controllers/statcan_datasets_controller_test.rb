@@ -2,13 +2,7 @@ require "test_helper"
 
 class StatcanDatasetsControllerTest < ActionDispatch::IntegrationTest
   test "should show dataset" do
-    dataset = StatcanDataset.create!(
-       statcan_url: "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1410028701",
-       name: "demographic-incomes",
-       sync_schedule: "0 6 * * *",
-       current_data: [ { "year" => 2020, "population" => 38000000 } ],
-       last_synced_at: Time.parse("2025-01-01 23:00:00")  # Yesterday 11pm
-    )
+    dataset = statcan_datasets(:synced)
 
     get statcan_dataset_url(dataset)
 
