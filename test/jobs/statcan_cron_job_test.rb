@@ -39,8 +39,8 @@ class StatcanCronJobTest < ActiveJob::TestCase
     end
 
     # Verify the correct jobs were enqueued
-    assert_enqueued_with(job: StatcanSyncJob, args: [ stale_dataset1.id ])
-    assert_enqueued_with(job: StatcanSyncJob, args: [ stale_dataset2.id ])
+    assert_enqueued_with(job: StatcanSyncJob, args: [ stale_dataset1 ])
+    assert_enqueued_with(job: StatcanSyncJob, args: [ stale_dataset2 ])
   end
 
   test "should not enqueue jobs when no datasets need syncing" do

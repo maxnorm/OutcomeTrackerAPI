@@ -6,7 +6,7 @@ class StatcanSyncJobTest < ActiveJob::TestCase
     parsed_data = [ { "population" => 1000000, "year" => 2023 } ]
 
     StatcanFetcher.stub :fetch, parsed_data do
-      StatcanSyncJob.perform_now(dataset.id)
+      StatcanSyncJob.perform_now(dataset)
     end
 
     dataset.reload
@@ -19,7 +19,7 @@ class StatcanSyncJobTest < ActiveJob::TestCase
 
     StatcanFetcher.stub :fetch, ->(url) { raise HTTP::TimeoutError.new("Request timed out") } do
       assert_raises HTTP::TimeoutError do
-        StatcanSyncJob.perform_now(dataset.id)
+        StatcanSyncJob.perform_now(dataset)
       end
     end
 
