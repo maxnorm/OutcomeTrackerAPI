@@ -31,10 +31,7 @@ class Promise < ApplicationRecord
       promise_id: promise_id,
       title: concise_title,
       description: description,
-      text: text,
-      responsible_department_lead: responsible_department_lead,
-      intended_impact_and_objectives: intended_impact_and_objectives,
-      background_and_context: background_and_context
+      text: text
     }
   end
 

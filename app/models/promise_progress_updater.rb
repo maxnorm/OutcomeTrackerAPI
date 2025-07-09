@@ -12,12 +12,9 @@ class PromiseProgressUpdater < Chat
       You will receive:
       1. **Promise Information:**
         - `promise_id`: The internal ID for the promise
-        - `title`:#{' '}
-        - `description`:
-        - `text`:#{' '}
-        - `responsible_department_lead`: The department responsible for this commitment
-        - `intended_impact_and_objectives`: What the commitment aims to achieve
-        - `background_and_context`: Additional context about the commitment
+        - `title`: Title of the promise
+        - `description`: Summary of the promise
+        - `text`: Original text of the promise
 
       2. **Evidence Items:** A list of government actions/evidence related to this commitment, each containing:
         - `title_or_summary`: Brief description of the government action
