@@ -153,4 +153,30 @@ end
    stale_datasets = StatcanDataset.filter_stale([])
    assert_empty stale_datasets
  end
+
+ test "sync! should update dataset with fetched data" do
+   dataset = statcan_datasets(:unsynced)
+   parsed_data = [ { "population" => 1000000, "year" => 2023 } ]
+
+   StatcanFetcher.stub :fetch, parsed_data do
+     dataset.sync!
+   end
+
+   dataset.reload
+   assert_equal parsed_data, dataset.current_data
+   assert_not_nil dataset.last_synced_at
+ end
+
+ test "sync! should not update dataset when fetch times out" do
+   dataset = statcan_datasets(:unsynced)
+
+   StatcanFetcher.stub :fetch, ->(url) { raise HTTP::TimeoutError.new("Request timed out") } do
+     assert_raises HTTP::TimeoutError do
+       dataset.sync!
+     end
+   end
+
+   dataset.reload
+   assert_nil dataset.current_data
+ end
 end

@@ -17,6 +17,11 @@ class StatcanDataset < ApplicationRecord
     last_synced_at.to_i < last_scheduled_time.seconds
   end
 
+  def sync!
+    data = StatcanFetcher.fetch(statcan_url)
+    update!(current_data: data, last_synced_at: Time.current)
+  end
+
   private
 
   def valid_cron_expression
