@@ -11,7 +11,6 @@ gem "good_job", "~> 4.11"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
@@ -29,6 +28,8 @@ gem "rack-cors"
 
 # Search
 gem "ransack", "~> 4.3.0"
+
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
