@@ -7,6 +7,10 @@ class StatcanFetcher
       .headers("User-Agent" => "BuildCanada/OutcomeTrackerAPI")
       .get(url)
 
+    unless response.status.success?
+      raise "HTTP Error: #{response.status} - #{response.status.reason}"
+    end
+
     csv_string = response.body.to_s
 
     # Remove UTF-8 Byte Order Mark (BOM) if present
