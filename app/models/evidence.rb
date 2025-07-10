@@ -26,6 +26,7 @@ class Evidence < ApplicationRecord
 
   after_commit do
     self.promise.set_last_evidence_date!
+    self.promise.update_progress!
   end
 
   def search_result_title
