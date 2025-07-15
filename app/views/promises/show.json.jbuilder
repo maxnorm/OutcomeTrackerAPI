@@ -14,5 +14,5 @@ json.(@promise,
 )
 
 json.evidences do
-  json.partial! "evidences/evidence", collection: @promise.evidences.where.not(impact: "neutral"), as: :evidence
+  json.partial! "evidences/evidence", collection: @promise.evidences.impactful, as: :evidence
 end

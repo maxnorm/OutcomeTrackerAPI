@@ -17,7 +17,7 @@ class Promise < ApplicationRecord
   end
 
   def set_last_evidence_date!
-    self.last_evidence_date = evidences.where.not(impact: "neutral").map(&:activity).maximum(:published_at)
+    self.last_evidence_date = evidences.impactful.map(&:activity).maximum(:published_at)
     self.save!(touch: false)
   end
 

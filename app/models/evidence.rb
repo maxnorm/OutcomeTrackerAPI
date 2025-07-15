@@ -4,6 +4,8 @@ class Evidence < ApplicationRecord
   belongs_to :linked_by, class_name: "User", optional: true
   belongs_to :reviewed_by, class_name: "User", optional: true
 
+  scope :impactful, -> { where.not(impact: "neutral") }
+
   def self.ransackable_attributes(auth_object = nil)
     [ "impact", "impact_reason", "link_reason", "link_type" ]
   end
