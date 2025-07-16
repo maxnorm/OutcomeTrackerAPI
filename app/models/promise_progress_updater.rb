@@ -32,7 +32,7 @@ class PromiseProgressUpdater < Chat
       Now, review the list of evidence items:
 
       <evidence_items>
-      #{promise.evidences.map(&:format_for_llm).join("\n")}
+      #{promise.evidences.impactful.map(&:format_for_llm).join("\n")}
       </evidence_items>
 
       **Progress Scoring Scale (1-5):**
