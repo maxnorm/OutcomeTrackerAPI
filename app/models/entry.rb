@@ -29,7 +29,7 @@ class Entry < ApplicationRecord
       self.skip_reason = "Mailto url not a proper entry"
       self.save!
       return
-    elsif self.published_at < Time.parse("2025-04-28")
+    elsif self.published_at.present? && self.published_at < Time.parse("2025-04-28")
       self.skipped_at = Time.now
       self.skip_reason = "Too old, published before 2025-04-28 (Carney's election)"
       self.save!
