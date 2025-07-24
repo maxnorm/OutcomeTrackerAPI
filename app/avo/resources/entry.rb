@@ -18,8 +18,8 @@ class Avo::Resources::Entry < Avo::BaseResource
     end
 
     field :feed, as: :belongs_to
+    field :government, as: :belongs_to
     field :scraped_at, as: :date_time, sortable: true
-    field :published_at, as: :date_time, sortable: true
     field :published_at, as: :date_time, sortable: true
     field :title, as: :text
     field :summary, as: :textarea
@@ -30,5 +30,14 @@ class Avo::Resources::Entry < Avo::BaseResource
     field :activities, as: :has_many
 
     field :parsed_markdown, as: :markdown
+  end
+
+  def fill_fields
+    super
+
+    # Auto-populate government from the selected feed
+    if record.feed.present? && record.government.blank?
+      record.government = record.feed.government
+    end
   end
 end
