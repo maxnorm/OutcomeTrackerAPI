@@ -21,7 +21,6 @@ class Avo::Resources::Entry < Avo::BaseResource
     field :government, as: :belongs_to
     field :scraped_at, as: :date_time, sortable: true
     field :published_at, as: :date_time, sortable: true
-    field :published_at, as: :date_time, sortable: true
     field :title, as: :text
     field :summary, as: :textarea
     field :evidences, as: :has_many
