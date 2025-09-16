@@ -70,3 +70,5 @@ gem "nokogiri", "~> 1.18"
 
 gem "marksmith", "~> 0.4.5"
 gem "commonmarker", "~> 2.3"
+
+gem "appsignal"
