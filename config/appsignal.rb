@@ -2,7 +2,7 @@
 # Visit our documentation for a list of all available configuration options.
 # https://docs.appsignal.com/ruby/configuration/options.html
 Appsignal.configure do |config|
-  config.activate_if_environment("development", "production", "staging")
+  config.activate_if_environment("production", "staging")
   config.name = "OutcomeTrackerApi"
   # The application's Push API key
   # We recommend removing this line and setting this option with the
