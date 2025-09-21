@@ -79,7 +79,8 @@ class Avo::Resources::Promise < Avo::BaseResource
     field :text, as: :textarea
     # field :extracted_keywords_concepts, as: :textarea
     # field :intended_impact_and_objectives, as: :textarea
-    field :what_it_means_for_canadians, as: :textarea
+    field :what_it_means_for_canadians_for_avo, as: :textarea,
+          name: "What it means for Canadians"
     # field :linked_evidence_ids, as: :textarea
     # field :relevant_departments, as: :textarea
     # field :commitment_history_rationale, as: :code

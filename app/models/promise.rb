@@ -52,6 +52,28 @@ class Promise < ApplicationRecord
     self.save!
   end
 
+  # Virtual attribute for Avo admin interface
+  def what_it_means_for_canadians_for_avo
+    what_it_means_for_canadians&.inspect || "[]"
+  end
+
+  # Handle array format for Avo admin interface
+  def what_it_means_for_canadians_for_avo=(value)
+    if value.is_a?(String)
+      if value.strip.start_with?("[") && value.strip.end_with?("]")
+        begin
+          parsed = JSON.parse(value)
+          self.what_it_means_for_canadians = parsed if parsed.is_a?(Array)
+        rescue JSON::ParserError => e
+          Rails.logger.warn("Failed to parse array format: #{e.message}")
+        end
+      else
+        Rails.logger.warn("Expected array format but got: #{value}")
+      end
+    else
+      self.what_it_means_for_canadians = value
+    end
+  end
 
   def self.client_fields
     [
