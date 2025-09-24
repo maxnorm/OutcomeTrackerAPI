@@ -8,6 +8,8 @@ class Promise < ApplicationRecord
   has_one :lead_department_promise, -> { where(is_lead: true) }, class_name: "DepartmentPromise"
   has_one :lead_department, through: :lead_department_promise, source: :department
 
+  validate :validate_what_it_means_for_canadians_for_avo
+
   def self.ransackable_attributes(auth_object = nil)
     [ "concise_title" ]
   end
@@ -52,6 +54,47 @@ class Promise < ApplicationRecord
     self.save!
   end
 
+  # Virtual attribute for Avo admin interface
+  def what_it_means_for_canadians_for_avo
+    JSON.generate(what_it_means_for_canadians || [])
+  end
+
+  # Handle array format for Avo admin interface
+  def what_it_means_for_canadians_for_avo=(value)
+    error_message = "Must be a valid array format"
+    if value.is_a?(String)
+      stripped = value.strip
+      if stripped.empty?
+        self.what_it_means_for_canadians = []
+        @what_it_means_for_canadians_for_avo_error = nil
+        return
+      end
+      if stripped.start_with?("[") && stripped.end_with?("]")
+        begin
+          parsed = JSON.parse(stripped)
+          if parsed.is_a?(Array)
+            self.what_it_means_for_canadians = parsed
+            @what_it_means_for_canadians_for_avo_error = nil
+          else
+            @what_it_means_for_canadians_for_avo_error = error_message
+          end
+        rescue JSON::ParserError
+          @what_it_means_for_canadians_for_avo_error = error_message
+        end
+      else
+        @what_it_means_for_canadians_for_avo_error = error_message
+      end
+    else
+      self.what_it_means_for_canadians = value
+      @what_it_means_for_canadians_for_avo_error = nil
+    end
+  end
+
+  private def validate_what_it_means_for_canadians_for_avo
+    if defined?(@what_it_means_for_canadians_for_avo_error) && @what_it_means_for_canadians_for_avo_error.present?
+      errors.add(:what_it_means_for_canadians_for_avo, @what_it_means_for_canadians_for_avo_error)
+    end
+  end
 
   def self.client_fields
     [
