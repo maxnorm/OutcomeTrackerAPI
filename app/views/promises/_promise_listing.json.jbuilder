@@ -10,6 +10,8 @@ json.(promise,
   :last_evidence_date
 )
 
+json.source_url promise.source_document_url
+
 json.(promise,
   :bc_promise_direction,
   :bc_promise_rank,
