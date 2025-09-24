@@ -12,6 +12,8 @@ json.(@promise,
   :date_issued,
   :last_evidence_date
 )
+json.source_url @promise.source_document_url
+
 
 json.evidences do
   json.partial! "evidences/evidence", collection: @promise.evidences.impactful, as: :evidence
