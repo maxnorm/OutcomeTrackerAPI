@@ -1,0 +1,137 @@
+name: Weekly Database Dump
+
+on:
+  schedule:
+    # Run every Monday at 2 AM UTC
+    - cron: '0 2 * * 1'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  dump-database:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write
+
+    steps:
+      - name: Set up PostgreSQL client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
+      - name: Create dump directory
+        run: mkdir -p database_dumps
+
+      - name: Dump database (excluding users table)
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          # Parse DATABASE_URL to extract connection details
+          export PGHOST=$(echo $DATABASE_URL | sed -E 's/.*@([^:\/]+).*/\1/')
+          export PGPORT=$(echo $DATABASE_URL | sed -E 's/.*:([0-9]+)\/.*/\1/')
+          export PGDATABASE=$(echo $DATABASE_URL | sed -E 's/.*\/([^?]*).*/\1/')
+          export PGUSER=$(echo $DATABASE_URL | sed -E 's/postgres:\/\/([^:]+):.*/\1/')
+          export PGPASSWORD=$(echo $DATABASE_URL | sed -E 's/postgres:\/\/[^:]+:([^@]+)@.*/\1/')
+          
+          # Create dump excluding users table
+          DUMP_FILE="database_dumps/db_dump_$(date +%Y%m%d_%H%M%S).sql"
+          
+          # Dump schema and data, excluding the users table
+          pg_dump --no-owner --no-privileges \
+            --exclude-table=users \
+            --exclude-table=schema_migrations \
+            --exclude-table=ar_internal_metadata \
+            -f "$DUMP_FILE"
+          
+          # Compress the dump
+          gzip "$DUMP_FILE"
+          echo "DUMP_FILE=${DUMP_FILE}.gz" >> $GITHUB_ENV
+          echo "Dump created: ${DUMP_FILE}.gz"
+
+      - name: Upload dump as artifact using GitHub API
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Get the dump file name
+          DUMP_FILE_NAME=$(basename "$DUMP_FILE")
+          
+          # Create a unique artifact name with timestamp
+          ARTIFACT_NAME="database-dump-$(date +%Y%m%d-%H%M%S)"
+          
+          # Get workflow run ID
+          RUN_ID="${{ github.run_id }}"
+          
+          # Create artifact upload
+          echo "Creating artifact upload..."
+          UPLOAD_RESPONSE=$(curl -L \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/runs/${RUN_ID}/artifacts" \
+            -d "{\"name\":\"${ARTIFACT_NAME}\", \"retention_days\": 30}")
+          
+          # Extract upload URL and other details
+          UPLOAD_URL=$(echo "$UPLOAD_RESPONSE" | jq -r '.upload_url')
+          ARTIFACT_ID=$(echo "$UPLOAD_RESPONSE" | jq -r '.id')
+          
+          if [ "$UPLOAD_URL" = "null" ] || [ -z "$UPLOAD_URL" ]; then
+            echo "Failed to create artifact upload"
+            echo "Response: $UPLOAD_RESPONSE"
+            exit 1
+          fi
+          
+          # Upload the file
+          echo "Uploading dump file..."
+          curl -L \
+            -X PUT \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            -H "Content-Type: application/gzip" \
+            --data-binary "@$DUMP_FILE" \
+            "$UPLOAD_URL"
+          
+          # Finalize the artifact
+          echo "Finalizing artifact..."
+          curl -L \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/${ARTIFACT_ID}/finalize"
+          
+          echo "Database dump uploaded as artifact: ${ARTIFACT_NAME}"
+
+      - name: Clean up old artifacts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Keep only the last 4 weeks of dumps (delete artifacts older than 28 days)
+          echo "Cleaning up old database dump artifacts..."
+          
+          # Get all artifacts with name starting with "database-dump-"
+          ARTIFACTS=$(curl -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/artifacts?per_page=100" | \
+            jq -r '.artifacts[] | select(.name | startswith("database-dump-")) | "\(.id)|\(.created_at)"')
+          
+          # Delete artifacts older than 28 days
+          CUTOFF_DATE=$(date -d '28 days ago' +%s)
+          
+          echo "$ARTIFACTS" | while IFS='|' read -r artifact_id created_at; do
+            if [ -n "$artifact_id" ]; then
+              ARTIFACT_DATE=$(date -d "$created_at" +%s)
+              if [ "$ARTIFACT_DATE" -lt "$CUTOFF_DATE" ]; then
+                echo "Deleting old artifact ID: $artifact_id (created: $created_at)"
+                curl -L \
+                  -X DELETE \
+                  -H "Accept: application/vnd.github+json" \
+                  -H "Authorization: Bearer $GITHUB_TOKEN" \
+                  -H "X-GitHub-Api-Version: 2022-11-28" \
+                  "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/$artifact_id"
+              fi
+            fi
+          done
