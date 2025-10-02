@@ -9,6 +9,9 @@ on:
 jobs:
   dump-database:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write
 
     steps:
       - name: Set up PostgreSQL client
